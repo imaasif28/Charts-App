@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="24dp"
+        tools:context=".BarActivity">
+
+
+        <com.anychart.AnyChartView
+            android:id="@+id/any_chart_scatter"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_margin="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bmiGauge" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_chart_background"
+            app:layout_constraintBottom_toBottomOf="@id/txtBodyWValue"
+            app:layout_constraintEnd_toEndOf="@id/bubbleChartView"
+            app:layout_constraintStart_toStartOf="@id/bubbleChartView"
+            app:layout_constraintTop_toTopOf="@id/txtBodyW" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtBodyW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_body_weight"
+            android:drawablePadding="2dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Body Weight"
+            android:textColor="#015C74"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtBodyWDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingStart="28dp"
+            android:text="16/08/2023"
+            android:textColor="#015C74"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="@+id/txtBodyW"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtBodyW" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+
+            android:id="@+id/txtBodyWValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingBottom="12dp"
+            android:text="81.5 Kg"
+            android:textColor="#015C74"
+            android:textSize="21sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bubbleChartView" />
+
+        <com.github.mikephil.charting.charts.BubbleChart
+            android:id="@+id/bubbleChartView"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@id/candleStickChartView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtBodyWDate" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_chart_background_selected"
+            app:layout_constraintBottom_toBottomOf="@id/txtBPValue"
+            app:layout_constraintEnd_toEndOf="@id/candleStickChartView"
+            app:layout_constraintStart_toStartOf="@id/candleStickChartView"
+            app:layout_constraintTop_toTopOf="@id/txtBP" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtBP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_bp"
+            android:drawablePadding="4dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Blood Pressure"
+            android:textColor="#F05123"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/candleStickChartView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtBPDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingStart="28dp"
+            android:text="16/08/2023"
+            android:textColor="#F05123"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@id/txtBP"
+            app:layout_constraintTop_toBottomOf="@id/txtBodyW" />
+
+        <com.github.mikephil.charting.charts.CandleStickChart
+            android:id="@+id/candleStickChartView"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/bubbleChartView"
+            app:layout_constraintTop_toBottomOf="@id/txtBPDate" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtBPValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingBottom="12dp"
+            android:text="120-80 mm/Hg"
+            android:textColor="#F05123"
+            android:textSize="21sp"
+            app:layout_constraintStart_toStartOf="@id/candleStickChartView"
+            app:layout_constraintTop_toBottomOf="@id/candleStickChartView" />
+
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_chart_background"
+            app:layout_constraintBottom_toBottomOf="@id/txtBgValue"
+            app:layout_constraintEnd_toEndOf="@id/barChartView"
+            app:layout_constraintStart_toStartOf="@id/barChartView"
+            app:layout_constraintTop_toTopOf="@id/txtBloodGl" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtBloodGl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_blood_g"
+            android:drawablePadding="2dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Blood Glucose"
+            android:textColor="#015C74"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtBodyWValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtBgWDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingStart="28dp"
+            android:text="16/08/2023"
+            android:textColor="#015C74"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="@id/txtBloodGl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtBloodGl" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+
+            android:id="@+id/txtBgValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingBottom="12dp"
+            android:text="105 mg/dL"
+            android:textColor="#015C74"
+            android:textSize="21sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barChartView" />
+
+        <com.github.mikephil.charting.charts.ScatterChart
+            android:id="@+id/barChartView"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="4dp"
+            android:padding="12dp"
+            app:layout_constraintEnd_toStartOf="@+id/lineChartView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBgWDate" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_chart_background"
+            app:layout_constraintBottom_toBottomOf="@id/txtHRValue"
+            app:layout_constraintEnd_toEndOf="@id/lineChartView"
+            app:layout_constraintStart_toStartOf="@id/lineChartView"
+            app:layout_constraintTop_toTopOf="@id/txtHR" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtHR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_heart_rate"
+            android:drawablePadding="2dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Heart Rate"
+            android:textColor="#015C74"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/lineChartView"
+            app:layout_constraintTop_toBottomOf="@id/txtBodyWValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtHRDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingStart="28dp"
+            android:text="16/08/2023"
+            android:textColor="#015C74"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@id/txtHR"
+            app:layout_constraintTop_toBottomOf="@id/txtBloodGl" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtHRValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingBottom="12dp"
+            android:text="77 bpm"
+            android:textColor="#015C74"
+            android:textSize="21sp"
+            app:layout_constraintStart_toStartOf="@id/lineChartView"
+            app:layout_constraintTop_toBottomOf="@id/lineChartView" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChartView"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barChartView"
+            app:layout_constraintTop_toBottomOf="@+id/txtBgWDate" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_chart_background"
+            app:layout_constraintBottom_toBottomOf="@id/txtCalorieSValue"
+            app:layout_constraintEnd_toEndOf="@id/lineChartView"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@id/txtSTEPSDate" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSTEPSDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:paddingVertical="12dp"
+            android:paddingStart="8dp"
+            android:text="STEPS"
+            android:textColor="#015C74"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBgValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSTEPSValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_steps"
+            android:drawablePadding="2dp"
+            android:paddingBottom="12dp"
+            android:text="1605 / 5000 steps"
+            android:textColor="#015C74"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/pieChartView"
+            app:layout_constraintStart_toStartOf="@+id/txtSTEPSDate"
+            app:layout_constraintTop_toBottomOf="@id/txtSTEPSDate" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCalorieSDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="12dp"
+            android:text="Calories"
+            android:textColor="#015C74"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/txtSTEPSDate"
+            app:layout_constraintTop_toBottomOf="@id/txtDisValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCalorieSValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_calories"
+            android:drawablePadding="2dp"
+            android:paddingBottom="12dp"
+            android:text="92 / 200 kcal"
+            android:textColor="#015C74"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/pieChartView"
+            app:layout_constraintStart_toStartOf="@+id/txtCalorieSDate"
+            app:layout_constraintTop_toBottomOf="@id/txtCalorieSDate" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtDisSDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="12dp"
+            android:text="DISTANCE"
+            android:textColor="#015C74"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/txtSTEPSDate"
+            app:layout_constraintTop_toBottomOf="@id/txtSTEPSValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtDisValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_distance"
+            android:drawablePadding="2dp"
+            android:paddingBottom="12dp"
+            android:text="1.14 / 4.00 km"
+            android:textColor="#015C74"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/pieChartView"
+            app:layout_constraintStart_toStartOf="@id/txtDisSDate"
+            app:layout_constraintTop_toBottomOf="@id/txtDisSDate" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/txtCalorieSValue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfGauge"
+            app:layout_constraintStart_toStartOf="@+id/lineChartView"
+            app:layout_constraintTop_toTopOf="@+id/txtSTEPSDate" />
+
+        <com.anychart.AnyChartView
+            android:id="@+id/any_chart_circle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtCalorieSValue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/halfGauge"
+            app:layout_constraintStart_toStartOf="@+id/lineChartView"
+            app:layout_constraintTop_toTopOf="@+id/txtSTEPSDate" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/any_chart_circle"
+            app:layout_constraintEnd_toEndOf="@id/any_chart_circle"
+            app:layout_constraintStart_toStartOf="@id/any_chart_circle"
+            app:layout_constraintTop_toTopOf="@id/any_chart_circle" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_chart_background"
+            app:layout_constraintBottom_toBottomOf="@id/txtSpo2Value"
+            app:layout_constraintEnd_toEndOf="@id/bubbleChartView"
+            app:layout_constraintStart_toStartOf="@id/bubbleChartView"
+            app:layout_constraintTop_toTopOf="@id/txtSpO2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSpO2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_bp"
+            android:drawablePadding="2dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="SpO2"
+            android:textColor="#015C74"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCalorieSValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSp02Date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingStart="28dp"
+            android:text="16/08/2023"
+            android:textColor="#015C74"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="@+id/txtBodyW"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtSpO2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSpo2Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingBottom="12dp"
+            android:text="98 %"
+            android:textColor="#015C74"
+            android:textSize="21sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barChart" />
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/barChartHorizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSp02Date" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_chart_background"
+            app:layout_constraintBottom_toBottomOf="@id/txtSpo2Value"
+            app:layout_constraintEnd_toEndOf="@id/barChartHorizontal"
+            app:layout_constraintStart_toStartOf="@id/barChartHorizontal"
+            app:layout_constraintTop_toTopOf="@id/txtSpO2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtStress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_bp"
+            android:drawablePadding="2dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Stress"
+            android:textColor="#015C74"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/barChartHorizontal"
+            app:layout_constraintTop_toBottomOf="@id/txtCalorieSValue" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtStressDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingStart="12dp"
+            android:text="16/08/2023"
+            android:textColor="#015C74"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@id/txtStress"
+            app:layout_constraintTop_toBottomOf="@id/txtStress" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtStressValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingBottom="12dp"
+            android:text="50 Normal"
+            android:textColor="#015C74"
+            android:textSize="21sp"
+            app:layout_constraintStart_toStartOf="@id/txtStress"
+            app:layout_constraintTop_toBottomOf="@id/barChartHorizontal" />
+
+
+        <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:id="@+id/barChartHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/barChart"
+            app:layout_constraintTop_toBottomOf="@+id/txtStressDate" />
+
+        <com.ekn.gruzer.gaugelibrary.HalfGauge
+            android:id="@+id/halfGauge"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barChartHorizontal" />
+
+        <com.github.mikephil.charting.charts.RadarChart
+            android:id="@+id/radarChartView"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/halfGauge" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_chart_background"
+            app:layout_constraintBottom_toBottomOf="@id/txtCholestrolValue"
+            app:layout_constraintEnd_toEndOf="@id/lineChartViewCholestrol"
+            app:layout_constraintStart_toStartOf="@id/lineChartViewCholestrol"
+            app:layout_constraintTop_toTopOf="@id/txtCholestrol" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCholestrol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_bp"
+            android:drawablePadding="2dp"
+            android:paddingStart="12dp"
+            android:paddingTop="12dp"
+            android:text="Cholestrol"
+            android:textColor="#015C74"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtSpo2Value" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCholestrolDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingStart="28dp"
+            android:text="16/08/2023"
+            android:textColor="#015C74"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="@+id/txtBodyW"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCholestrol" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCholestrolValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingBottom="12dp"
+            android:text="30 Normal"
+            android:textColor="#015C74"
+            android:textSize="21sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lineChartViewCholestrol" />
+
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChartViewCholestrol"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/barChart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCholestrolDate" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtBMI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="BMI Calculator"
+            android:textColor="#015C74"
+            android:textSize="21sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCholestrolValue" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bmiGauge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_bmi_gauge"
+            app:layout_constraintTop_toBottomOf="@id/txtBMI" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bmiNeedle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_bmi_needle"
+            app:layout_constraintBottom_toBottomOf="@id/bmiGauge"
+            app:layout_constraintEnd_toEndOf="@id/bmiGauge"
+            app:layout_constraintStart_toStartOf="@id/bmiGauge" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
