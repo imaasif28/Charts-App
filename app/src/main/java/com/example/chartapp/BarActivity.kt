@@ -66,7 +66,7 @@ class BarActivity : AppCompatActivity() {
     private lateinit var radarChart: RadarChart
     private lateinit var pieChart: PieChart
     private lateinit var bubbleChart: BubbleChart
-    private lateinit var candleStickChart: CandleStickChart
+    private lateinit var candleStickChart: LineChart
     private lateinit var cholestrolChart: LineChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,7 +86,8 @@ class BarActivity : AppCompatActivity() {
         scatterChart()
 //        anyScatterChart()
         bubbleChart()
-        candleStick()
+//        candleStick()
+        bpChart(candleStickChart)
         lineChart()
         barChart()
         horizontalBarChart()
@@ -157,6 +158,129 @@ class BarActivity : AppCompatActivity() {
         }
         legend(lineChart.legend)
     }
+
+    private fun bpChart(lineChart: LineChart) {
+
+        val barData = LineData(BPDataSet1(), BPDataSet2(), BPDataSet3())
+        //        barChart.setFitBars(true)
+        //        barChart.isAutoScaleMinMaxEnabled = true
+        lineChart.isKeepPositionOnRotation = true
+        lineChart.data = barData
+        lineChart.xAxis.isEnabled = true
+        lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+        //        lineChart.axisLeft.isEnabled = false
+        //remove axis lines
+        lineChart.axisRight.isEnabled = false
+        lineChart.xAxis.setDrawAxisLine(false)
+        lineChart.axisLeft.setDrawAxisLine(false)
+        lineChart.axisRight.setDrawAxisLine(false)
+        //remove grid lines
+        with(lineChart) {
+            xAxis.setDrawGridLines(false)
+            axisRight.setDrawGridLines(false)
+            xAxis.textColor = Color.GRAY
+            axisLeft.textColor = Color.GRAY
+            //h lines
+            axisLeft.setDrawGridLines(true)
+            legend.isEnabled = false
+            xAxis.axisMaximum = 120f
+            description.isEnabled = false
+
+            xAxis.axisMaximum = 100f
+            xAxis.axisMinimum = 0f
+            axisLeft.axisMaximum = 100f
+            axisLeft.axisMinimum = 0f
+
+            setBackgroundColor(resources.getColor(android.R.color.transparent))
+            // Set transparent background
+            // Set background with round border
+//            setBackgroundResource(R.drawable.rounded_chart_background);  // Create a rounded background drawable and set it
+            // Set border
+            //            setDrawBorders(true);
+            setBorderColor(Color.CYAN)  // Replace Color.BLACK with your desired border color
+            setBorderWidth(1f)
+        }
+        legend(lineChart.legend)
+    }
+
+    private fun BPDataSet1(): LineDataSet {
+        val list: ArrayList<Entry> = ArrayList()
+        list.add(Entry(80f, 30f))
+        list.add(Entry(80f, 70f))
+        /*
+        list.add(Entry(90f, 81f))
+        list.add(Entry(93f, 78f))
+        list.add(Entry(99f, 99f))
+        list.add(Entry(105f, 83f))
+        list.add(Entry(107f, 78f))
+        list.add(Entry(120f, 105f))
+        */
+        val barDataSet = LineDataSet(list, "List")
+
+        barDataSet.setColors(
+            intArrayOf(
+                rgb("#FF039BE5"),   /* rgb("#FDC80C"), rgb("#e74c3c"), rgb("#3498db")*/
+            ), 255
+        )
+        barDataSet.valueTextSize = 0f
+        //        barDataSet.valueTextColor = Color.BLACK
+        barDataSet.highlightLineWidth = 1f
+        barDataSet.lineWidth = 4f
+        barDataSet.setDrawCircles(true)
+        barDataSet.circleRadius = 2f
+        barDataSet.circleHoleColor = rgb("#FF039BE5")
+        barDataSet.setCircleColor(rgb("#FF039BE5"))
+
+        return barDataSet
+    }
+
+    private fun BPDataSet2(): LineDataSet {
+        val list: ArrayList<Entry> = ArrayList()
+        list.add(Entry(40f, 20f))
+        list.add(Entry(40f, 61f))
+        val barDataSet = LineDataSet(list, "List")
+
+        barDataSet.setColors(
+            intArrayOf(
+                rgb("#F05123"),
+            ), 255
+        )
+        barDataSet.valueTextSize = 0f
+        //        barDataSet.valueTextColor = Color.BLACK
+        barDataSet.lineWidth = 1.5f
+        barDataSet.highlightLineWidth = 1f
+
+        barDataSet.setDrawCircles(true)
+        barDataSet.circleRadius = 2f
+        barDataSet.circleHoleColor = rgb("#F05123")
+        barDataSet.setCircleColor(rgb("#F05123"))
+
+        return barDataSet
+    }
+    private fun BPDataSet3(): LineDataSet {
+        val list: ArrayList<Entry> = ArrayList()
+        list.add(Entry(40f, 20f))
+//        list.add(Entry(40f, 61f))
+        val barDataSet = LineDataSet(list, "List")
+
+        barDataSet.setColors(
+            intArrayOf(
+                rgb("#FFD9BD"),
+            ), 255
+        )
+        barDataSet.valueTextSize = 0f
+        //        barDataSet.valueTextColor = Color.BLACK
+        barDataSet.lineWidth = 1.5f
+        barDataSet.highlightLineWidth = 1f
+
+        barDataSet.setDrawCircles(true)
+        barDataSet.circleRadius = 2f
+        barDataSet.circleHoleColor = rgb("#FFD9BD")
+        barDataSet.setCircleColor(rgb("#FFD9BD"))
+
+        return barDataSet
+    }
+
 
     private fun cholestrolChart() {
         val list: ArrayList<Entry> = ArrayList()
@@ -607,52 +731,52 @@ class BarActivity : AppCompatActivity() {
         legend(bubbleChart.legend)
     }
 
-    private fun candleStick() {
-        val list: ArrayList<CandleEntry> = ArrayList()
-        list.add(
-            CandleEntry(10f, 50f, 40f, 0f, 50f)
-        )
-        list.add(CandleEntry(20f, 81f, 50f, 0f, 10f))
-        list.add(CandleEntry(30f, 98f, 50f, 10f, 20f))
-        list.add(CandleEntry(40f, 83f, 50f, 20f, 30f))
-        list.add(CandleEntry(50f, 78f, 50f, 30f, 40f))
-        list.add(CandleEntry(60f, 105f, 50f, 40f, 50f))
-        val barDataSet = CandleDataSet(list, "List")
-        barDataSet.showCandleBar = true
-        barDataSet.setColors(
-            intArrayOf(
-                rgb("#FDC80C"), rgb("#FF039BE5"), /*rgb("#e74c3c"), rgb("#3498db")*/
-            ), 255
-        )
-//            barDataSet.valueTextSize = 0f
-        //        barDataSet.valueTextColor = Color.BLACK
-//                    barDataSet.highlightLineWidth = 2f
-        val barData = CandleData(barDataSet)
-        //        barChart.isAutoScaleMinMaxEnabled = true
-        candleStickChart.isKeepPositionOnRotation = true
-        candleStickChart.data = barData
-        candleStickChart.xAxis.isEnabled = true
-        candleStickChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-        //        candleStickChart.axisLeft.isEnabled = false
-        //remove axis lines
-        candleStickChart.axisRight.isEnabled = false
-        candleStickChart.xAxis.setDrawAxisLine(false)
-        candleStickChart.axisLeft.setDrawAxisLine(false)
-        candleStickChart.axisRight.setDrawAxisLine(false)
-        //remove grid lines
-        with(candleStickChart) {
-            xAxis.setDrawGridLines(false)
-            axisRight.setDrawGridLines(false)
-            xAxis.axisMaximum = 120f
-            legend.isEnabled = false
-            description.isEnabled = false
-//            setBackgroundResource(R.drawable.rounded_chart_background);  // Create a rounded background drawable and set it
-            // Set border
-            //            setDrawBorders(true);
-            setBorderColor(Color.CYAN)  // Replace Color.BLACK with your desired border color
-            setBorderWidth(1f)
-        }
-    }
+//    private fun candleStick() {
+//        val list: ArrayList<CandleEntry> = ArrayList()
+//        list.add(
+//            CandleEntry(10f, 50f, 40f, 0f, 50f)
+//        )
+//        list.add(CandleEntry(20f, 81f, 50f, 0f, 10f))
+//        list.add(CandleEntry(30f, 98f, 50f, 10f, 20f))
+//        list.add(CandleEntry(40f, 83f, 50f, 20f, 30f))
+//        list.add(CandleEntry(50f, 78f, 50f, 30f, 40f))
+//        list.add(CandleEntry(60f, 105f, 50f, 40f, 50f))
+//        val barDataSet = CandleDataSet(list, "List")
+//        barDataSet.showCandleBar = true
+//        barDataSet.setColors(
+//            intArrayOf(
+//                rgb("#FDC80C"), rgb("#FF039BE5"), /*rgb("#e74c3c"), rgb("#3498db")*/
+//            ), 255
+//        )
+////            barDataSet.valueTextSize = 0f
+//        //        barDataSet.valueTextColor = Color.BLACK
+////                    barDataSet.highlightLineWidth = 2f
+//        val barData = CandleData(barDataSet)
+//        //        barChart.isAutoScaleMinMaxEnabled = true
+//        candleStickChart.isKeepPositionOnRotation = true
+//        candleStickChart.data = barData
+//        candleStickChart.xAxis.isEnabled = true
+//        candleStickChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+//        //        candleStickChart.axisLeft.isEnabled = false
+//        //remove axis lines
+//        candleStickChart.axisRight.isEnabled = false
+//        candleStickChart.xAxis.setDrawAxisLine(false)
+//        candleStickChart.axisLeft.setDrawAxisLine(false)
+//        candleStickChart.axisRight.setDrawAxisLine(false)
+//        //remove grid lines
+//        with(candleStickChart) {
+//            xAxis.setDrawGridLines(false)
+//            axisRight.setDrawGridLines(false)
+//            xAxis.axisMaximum = 120f
+//            legend.isEnabled = false
+//            description.isEnabled = false
+////            setBackgroundResource(R.drawable.rounded_chart_background);  // Create a rounded background drawable and set it
+//            // Set border
+//            //            setDrawBorders(true);
+//            setBorderColor(Color.CYAN)  // Replace Color.BLACK with your desired border color
+//            setBorderWidth(1f)
+//        }
+//    }
 
     private fun circularGauge() {
         val anyChartView = binding.anyChartCircle

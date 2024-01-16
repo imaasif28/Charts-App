@@ -114,7 +114,7 @@
             app:layout_constraintStart_toStartOf="@id/txtBP"
             app:layout_constraintTop_toBottomOf="@id/txtBodyW" />
 
-        <com.github.mikephil.charting.charts.CandleStickChart
+        <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/candleStickChartView"
             android:layout_width="0dp"
             android:layout_height="100dp"
