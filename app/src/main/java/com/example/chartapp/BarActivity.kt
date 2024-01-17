@@ -12,8 +12,10 @@ import com.anychart.AnyChart
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.SingleValueDataSet
 import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.anychart.enums.GaugeSidePosition
 import com.anychart.enums.HoverMode
 import com.anychart.enums.MarkerType
+import com.anychart.enums.Position
 import com.anychart.enums.TooltipDisplayMode
 import com.anychart.graphics.vector.Fill
 import com.anychart.graphics.vector.SolidFill
@@ -782,13 +784,22 @@ class BarActivity : AppCompatActivity() {
         val anyChartView = binding.anyChartCircle
         anyChartView.setProgressBar(binding.progressBar)
         val circularGauge = AnyChart.circular()
-        circularGauge.data(SingleValueDataSet(arrayOf("32", "34", "67", "93", "56", "100")))
+        circularGauge.data(SingleValueDataSet(arrayOf("32", "34", "67", "93", "5", "100")))
         circularGauge.fill("#fff")
             .stroke(null)
             .padding(0.0, 0.0, 0.0, 0.0)
             .margin(20.0, 20.0, 20.0, 20.0)
         circularGauge.startAngle(0.0)
         circularGauge.sweepAngle(360.0)
+        circularGauge.marker(0.0)
+            .axisIndex(2)
+            .dataIndex(5)
+            .size(70)
+            .type(MarkerType.TRIANGLE_DOWN)
+            .position(GaugeSidePosition.OUTSIDE)
+            .radius(80).enabled(true).zIndex(5.0)
+
+
         val xAxis = circularGauge.axis(0)
             .radius(100.0)
             .width(1.0)
@@ -796,24 +807,29 @@ class BarActivity : AppCompatActivity() {
         xAxis.scale()
             .minimum(0.0)
             .maximum(100.0)
-        xAxis.ticks("{ interval: 1 }")
-            .minorTicks("{ interval: 1 }")
+        xAxis.cornersRounding(10)
+//        xAxis.ticks("{ interval: 1 }")
+//            .minorTicks("{ interval: 1 }")
         xAxis.labels().enabled(false)
         xAxis.ticks().enabled(false)
         xAxis.minorTicks().enabled(false)
-        val bar0 = circularGauge.bar(0.0)
+
+        val bar0 = circularGauge.bar(99)
         bar0.dataIndex(0.0)
         bar0.radius(100.0)
         bar0.width(10.0)
         bar0.fill(SolidFill("#90D0D4", 1.0))
         bar0.stroke(null)
         bar0.zIndex(5.0)
+
+        circularGauge.axis(0.0).cornersRounding(10.0)
+
         val bar100 = circularGauge.bar(100.0)
         bar100.dataIndex(5.0)
         bar100.radius(100.0)
         bar100.width(2.0)
-        bar100.fill(SolidFill("#C8C8C8", 0.4))
-//        bar100.stroke("1 #e5e4e4")
+        bar100.fill(SolidFill("#808080", 0.4))
+        bar100.stroke(null)
         bar100.zIndex(4.0)
         val bar1 = circularGauge.bar(1.0)
         bar1.dataIndex(1.0)
