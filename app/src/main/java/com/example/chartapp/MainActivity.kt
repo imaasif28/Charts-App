@@ -12,6 +12,7 @@ import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.animation.ChartAnimator
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.charts.PieChart
@@ -54,8 +55,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var lineChart: LineChart
     private lateinit var pieChart: PieChart
     private lateinit var pieChart2: PieChart
+    private lateinit var pieChart3: PieChart
     private lateinit var pieChartBG: PieChart
     private lateinit var pieChartBG2: PieChart
+    private lateinit var pieChartBG3: PieChart
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,19 +71,30 @@ class MainActivity : AppCompatActivity() {
         lineChart = findViewById(R.id.sleepChartView)
         pieChart = findViewById(R.id.pieChartView)
         pieChart2 = findViewById(R.id.pieChartView2)
+        pieChart3 = findViewById(R.id.pieChartView3)
         pieChartBG = findViewById(R.id.pieChartBackgroundView)
         pieChartBG2 = findViewById(R.id.pieChartBackgroundView2)
+        pieChartBG3 = findViewById(R.id.pieChartBackgroundView3)
 
         lineChart()
 
-        setupPieChart()
+        setupPieChart(pieChart)
+        setupPieChart(pieChart2)
+        setupPieChart(pieChart3)
+
+        setupPieChart(pieChartBG)
+        setupPieChart(pieChartBG2)
+        setupPieChart(pieChartBG3)
+
+
         setData()
-        setupPieChartBG()
-        setDataBG()
-        setupPieChart2()
+        setDataBG(pieChartBG,95f)
+
         setData2()
-        setupPieChartBG2()
-        setDataBG2()
+        setDataBG(pieChartBG2, 93.7f)
+
+        setData3()
+        setDataBG(pieChartBG3, 91.5f)
 
         btnBarChart.setOnClickListener {
             startActivity(Intent(this, BarActivity::class.java))
@@ -98,264 +112,97 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupPieChart() {
-
-//        pieChart.layoutParams = ConstraintLayout.LayoutParams(300,300)
-
-        pieChart.setUsePercentValues(true)
-        pieChart.description.isEnabled = false
-        pieChart.isDrawHoleEnabled = true
-        pieChart.setHoleColor(Color.TRANSPARENT)
-        pieChart.setTransparentCircleAlpha(110)
-        pieChart.legend.isEnabled = false
-        pieChart.holeRadius = 25f
-        pieChart.setDrawCenterText(true)
-        pieChart.isRotationEnabled = false
+    private fun setupPieChart(pieChartView: PieChart) = pieChartView.apply {
+        setUsePercentValues(true)
+        description.isEnabled = false
+        isDrawHoleEnabled = true
+        setHoleColor(Color.TRANSPARENT)
+        setTransparentCircleAlpha(110)
+        legend.isEnabled = false
+        holeRadius = 25f
+        setDrawCenterText(true)
+        isRotationEnabled = false
     }
 
     private fun setData() {
-//        val outerEntries = mutableListOf<PieEntry>()
         val innerEntries = mutableListOf<PieEntry>()
 
-        // Add your data for the outer pie chart
-//        outerEntries.add(PieEntry(30f, "Label 1"))
-//        outerEntries.add(PieEntry(40f, "Label 2"))
-//        outerEntries.add(PieEntry(25f, "Label 3"))
-
-        // Add your data for the inner pie chart
         innerEntries.add(PieEntry(20f, ""))
         innerEntries.add(PieEntry(80f, ""))
-//        innerEntries.add(PieEntry(15f, "Inner Label 3"))
-
-//        val outerDataSet = PieDataSet(outerEntries, "Outer Pie")
-//        outerDataSet.colors = ColorTemplate.COLORFUL_COLORS.toList()
 
         val innerDataSet = PieDataSet(innerEntries, "Inner Pie")
         innerDataSet.valueTextSize = 0.0f
-//        innerDataSet.colors = ColorTemplate.PASTEL_COLORS.toList()
-        innerDataSet.colors = listOf(
-            getColor(R.color.green),
-            Color.TRANSPARENT
-        )
-//        val outerData = PieData(outerDataSet)
-        val innerData = PieData(innerDataSet)
-
-        // Set data for the outer and inner pie charts
-//        pieChart.data = outerData
-//        pieChart.invalidate()
-
-        // Add inner pie chart to the center
-        val holeRadius = 85f
-        val transparentCircleRadius = 90f
-        pieChart.holeRadius = holeRadius
-//        pieChart.transparentCircleRadius = transparentCircleRadius
-//        pieChart.setExtraOffsets(
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius
-//        )
-//        pieChart.setDrawRoundedSlices(true)
-        pieChart.renderer = RoundedSlicesPieChartRenderer(pieChart, pieChart.animator, pieChart.viewPortHandler);
-        pieChart.data = innerData
-        pieChart.invalidate()
-//        pieChart.notifyDataSetChanged()
-    }
-
-    private fun setupPieChart2() {
-        pieChart2.setUsePercentValues(true)
-        pieChart2.description.isEnabled = false
-        pieChart2.isDrawHoleEnabled = true
-        pieChart2.setHoleColor(Color.TRANSPARENT)
-        pieChart2.setTransparentCircleColor(Color.BLUE)
-        pieChart2.setTransparentCircleAlpha(110)
-        pieChart2.holeRadius = 25f
-        pieChart2.transparentCircleRadius = 30f
-        pieChart2.setDrawCenterText(true)
-        pieChart2.legend.isEnabled = false
-        pieChart2.animateX(1000)
-//        pieChart2.rotationAngle = 0f
-        pieChart2.isRotationEnabled = false
-    }
-
-    private fun setData2() {
-//        val outerEntries = mutableListOf<PieEntry>()
-        val innerEntries = mutableListOf<PieEntry>()
-
-        // Add your data for the outer pie chart
-//        outerEntries.add(PieEntry(30f, "Label 1"))
-//        outerEntries.add(PieEntry(40f, "Label 2"))
-//        outerEntries.add(PieEntry(25f, "Label 3"))
-
-        // Add your data for the inner pie chart
-        innerEntries.add(PieEntry(60f, ""))
-        innerEntries.add(PieEntry(40f, ""))
-//        innerEntries.add(PieEntry(15f, "Inner Label 3"))
-
-//        val outerDataSet = PieDataSet(outerEntries, "Outer Pie")
-//        outerDataSet.colors = ColorTemplate.COLORFUL_COLORS.toList()
-
-        val innerDataSet = PieDataSet(innerEntries, "Inner Pie")
-        innerDataSet.valueTextSize = 0.0f
-
-//        innerDataSet.colors = ColorTemplate.PASTEL_COLORS.toList()
         innerDataSet.colors = listOf(
             getColor(R.color.blue),
             Color.TRANSPARENT
         )
-
-//        val outerData = PieData(outerDataSet)
         val innerData = PieData(innerDataSet)
 
-        // Set data for the outer and inner pie charts
-//        pieChart2.data = outerData
-//        pieChart2.invalidate()
+        val holeRadius = 90f
+        pieChart.holeRadius = holeRadius
+        pieChart.renderer = RoundedSlicesPieChartRenderer(pieChart, pieChart.animator, pieChart.viewPortHandler);
+        pieChart.data = innerData
+        pieChart.invalidate()
+    }
 
-        // Add inner pie chart to the center
-        val holeRadius = 80f
-        val transparentCircleRadius = 50f
+    private fun setData2() {
+        val innerEntries = mutableListOf<PieEntry>()
+
+        innerEntries.add(PieEntry(60f, ""))
+        innerEntries.add(PieEntry(40f, ""))
+        val innerDataSet = PieDataSet(innerEntries, "Inner Pie")
+        innerDataSet.valueTextSize = 0.0f
+
+        innerDataSet.colors = listOf(
+            getColor(R.color.green),
+            Color.TRANSPARENT
+        )
+
+        val innerData = PieData(innerDataSet)
+
+        val holeRadius = 87.5f
         pieChart2.holeRadius = holeRadius
-//        pieChart2.transparentCircleRadius = transparentCircleRadius
-//        pieChart2.setExtraOffsets(
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius
-//        )
         pieChart2.renderer = RoundedSlicesPieChartRenderer(pieChart2, pieChart2.animator, pieChart2.viewPortHandler);
 
         pieChart2.data = innerData
         pieChart2.invalidate()
-//        pieChart2.notifyDataSetChanged()
     }
 
-    private fun setupPieChartBG() {
-        pieChartBG.setUsePercentValues(true)
-        pieChartBG.description.isEnabled = false
-        pieChartBG.isDrawHoleEnabled = true
-        pieChartBG.setHoleColor(Color.TRANSPARENT)
-        pieChartBG.legend.isEnabled = false
-        pieChartBG.holeRadius = 25f
-        pieChartBG.setDrawCenterText(true)
-        pieChartBG.isRotationEnabled = false
-    }
-
-    private fun setDataBG() {
-//        val outerEntries = mutableListOf<PieEntry>()
+    private fun setData3() {
         val innerEntries = mutableListOf<PieEntry>()
-
-        // Add your data for the outer pie chart
-//        outerEntries.add(PieEntry(30f, "Label 1"))
-//        outerEntries.add(PieEntry(40f, "Label 2"))
-//        outerEntries.add(PieEntry(25f, "Label 3"))
-
-        // Add your data for the inner pie chart
-        innerEntries.add(PieEntry(100f, ""))
-//        innerEntries.add(PieEntry(80f, ""))
-//        innerEntries.add(PieEntry(15f, "Inner Label 3"))
-
-//        val outerDataSet = PieDataSet(outerEntries, "Outer Pie")
-//        outerDataSet.colors = ColorTemplate.COLORFUL_COLORS.toList()
-
+        innerEntries.add(PieEntry(80f, ""))
+        innerEntries.add(PieEntry(20f, ""))
         val innerDataSet = PieDataSet(innerEntries, "Inner Pie")
         innerDataSet.valueTextSize = 0.0f
-//        innerDataSet.colors = ColorTemplate.PASTEL_COLORS.toList()
         innerDataSet.colors = listOf(
-            getColor(R.color.gray),
+            getColor(R.color.pink),
             Color.TRANSPARENT
         )
-//        val outerData = PieData(outerDataSet)
         val innerData = PieData(innerDataSet)
+        val holeRadius = 83.3f
+        pieChart3.holeRadius = holeRadius
+        pieChart3.renderer = RoundedSlicesPieChartRenderer(pieChart3, pieChart3.animator, pieChart3.viewPortHandler);
 
-        // Set data for the outer and inner pie charts
-//        pieChartBG.data = outerData
-//        pieChartBG.invalidate()
-
-        // Add inner pie chart to the center
-        val holeRadius = 96.5f // 85f --> 100f
-        val transparentCircleRadius = 90f
-        pieChartBG.holeRadius = holeRadius
-//        pieChartBG.transparentCircleRadius = transparentCircleRadius
-//        pieChartBG.setExtraOffsets(
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius
-//        )
-//        pieChartBG.setDrawRoundedSlices(true)
-//        pieChartBG.renderer = RoundedSlicesPieChartRenderer(pieChartBG, pieChartBG.animator, pieChartBG.viewPortHandler);
-        pieChartBG.data = innerData
-        pieChartBG.invalidate()
-//        pieChartBG.notifyDataSetChanged()
+        pieChart3.data = innerData
+        pieChart3.invalidate()
     }
 
-    private fun setupPieChartBG2() {
-        pieChartBG2.setUsePercentValues(true)
-        pieChartBG2.description.isEnabled = false
-        pieChartBG2.isDrawHoleEnabled = true
-        pieChartBG2.setHoleColor(Color.TRANSPARENT)
-        pieChartBG2.setTransparentCircleColor(Color.BLUE)
-        pieChartBG2.setTransparentCircleAlpha(110)
-        pieChartBG2.holeRadius = 25f
-        pieChartBG2.transparentCircleRadius = 30f
-        pieChartBG2.setDrawCenterText(true)
-        pieChartBG2.legend.isEnabled = false
-        pieChartBG2.animateX(1000)
-//        pieChartBG2.rotationAngle = 0f
-        pieChartBG2.isRotationEnabled = false
-    }
-
-    private fun setDataBG2() {
-//        val outerEntries = mutableListOf<PieEntry>()
+    private fun setDataBG(pieChartBackgroundView: PieChart, holeRadius: Float) = pieChartBackgroundView.apply {
         val innerEntries = mutableListOf<PieEntry>()
-
-        // Add your data for the outer pie chart
-//        outerEntries.add(PieEntry(30f, "Label 1"))
-//        outerEntries.add(PieEntry(40f, "Label 2"))
-//        outerEntries.add(PieEntry(25f, "Label 3"))
-
-        // Add your data for the inner pie chart
         innerEntries.add(PieEntry(100f, ""))
-//        innerEntries.add(PieEntry(40f, ""))
-//        innerEntries.add(PieEntry(15f, "Inner Label 3"))
-
-//        val outerDataSet = PieDataSet(outerEntries, "Outer Pie")
-//        outerDataSet.colors = ColorTemplate.COLORFUL_COLORS.toList()
-
         val innerDataSet = PieDataSet(innerEntries, "Inner Pie")
         innerDataSet.valueTextSize = 0.0f
-
-//        innerDataSet.colors = ColorTemplate.PASTEL_COLORS.toList()
         innerDataSet.colors = listOf(
-            getColor(R.color.gray),
+            ContextCompat.getColor(context, R.color.gray),
             Color.TRANSPARENT
         )
-
-//        val outerData = PieData(outerDataSet)
         val innerData = PieData(innerDataSet)
-
-        // Set data for the outer and inner pie charts
-//        pieChartBG2.data = outerData
-//        pieChartBG2.invalidate()
-
-        // Add inner pie chart to the center
-        val holeRadius = 95f // 80f --> 95f
-        val transparentCircleRadius = 50f
-        pieChartBG2.holeRadius = holeRadius
-//        pieChartBG2.transparentCircleRadius = transparentCircleRadius
-//        pieChartBG2.setExtraOffsets(
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius,
-//            holeRadius + transparentCircleRadius
-//        )
-//        pieChartBG2.renderer = RoundedSlicesPieChartRenderer(pieChartBG2, pieChartBG2.animator, pieChartBG2.viewPortHandler);
-
-        pieChartBG2.data = innerData
-        pieChartBG2.invalidate()
-//        pieChartBG2.notifyDataSetChanged()
+//        val holeRadius = 95f // 85f --> 100f
+        this@apply.holeRadius = holeRadius
+        renderer = RoundedSlicesPieChartRenderer(this, animator, viewPortHandler)
+        data = innerData
+        invalidate()
     }
-
 
     class RoundedSlicesPieChartRenderer(
         chart: PieChart,

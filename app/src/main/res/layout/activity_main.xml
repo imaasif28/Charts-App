@@ -31,7 +31,7 @@
         android:id="@+id/pieChartBackgroundView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="7dp"
+        android:layout_margin="2.7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/pieChartView"
@@ -41,7 +41,7 @@
         android:id="@+id/pieChartBackgroundView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="7dp"
+        android:layout_margin="2.7dp"
         android:elevation="1dp"
         app:layout_constraintEnd_toEndOf="@id/pieChartView2"
         app:layout_constraintStart_toStartOf="@id/pieChartView2"
@@ -49,9 +49,20 @@
         app:layout_constraintBottom_toBottomOf="@id/pieChartView2"/>
 
     <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChartBackgroundView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="2.7dp"
+        android:elevation="3dp"
+        app:layout_constraintEnd_toEndOf="@id/pieChartView3"
+        app:layout_constraintStart_toStartOf="@id/pieChartView3"
+        app:layout_constraintTop_toTopOf="@id/pieChartView3"
+        app:layout_constraintBottom_toBottomOf="@id/pieChartView3"/>
+
+    <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pieChartView"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sleepChartView"/>
@@ -59,13 +70,24 @@
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pieChartView2"
         android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
         android:elevation="2dp"
         app:layout_constraintEnd_toEndOf="@id/pieChartView"
         app:layout_constraintStart_toStartOf="@id/pieChartView"
-        app:layout_constraintTop_toBottomOf="@id/sleepChartView"/>
+        app:layout_constraintTop_toTopOf="@id/pieChartView"
+        app:layout_constraintBottom_toBottomOf="@id/pieChartView"/>
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChartView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="@id/pieChartView2"
+        app:layout_constraintStart_toStartOf="@id/pieChartView2"
+        app:layout_constraintTop_toTopOf="@id/pieChartView2"
+        app:layout_constraintBottom_toBottomOf="@id/pieChartView2"/>
 
     <Button
         android:id="@+id/button"
